@@ -30,7 +30,7 @@ export default function AddCardForm() {
             }
 
             const { error, paymentMethod } = await stripe.createPaymentMethod({
-                type: 'card',
+                type: "card",
                 card,
             });
 
@@ -40,12 +40,9 @@ export default function AddCardForm() {
                 console.log('[error]', error);
                 return;
             }
-            const user = JSON.parse(localStorage.getItem("user") || "{}");
-            console.log(user, "user ++++++++++++++++++++++++++++==");
 
             const res = await axios.post("http://localhost:3001/api/v1/card/save-card", {
                 paymentMethodId: paymentMethod?.id,
-                userId: user?._id
             }, { withCredentials: true });
 
             if (res.data.success) {

@@ -32,12 +32,11 @@ export default function SignUp() {
 
     const onSubmit = async (values: IForm) => {
         try {
-            const response = await axios.post("http://localhost:3001/api/v1/auth/signup", values);
+            const response = await axios.post("http://localhost:3001/api/v1/auth/signup", values, { withCredentials: true });
 
 
             if (response.status === 200) {
                 toast.success('Registration successful!');
-                localStorage.setItem("user", JSON.stringify(response?.data?.data));
                 router.push("/");
             }
 

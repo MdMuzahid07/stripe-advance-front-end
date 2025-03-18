@@ -27,12 +27,11 @@ export default function SignIn() {
     const onSubmit = async (values: ISignInForm) => {
         try {
 
-            const response = await axios.post("http://localhost:3001/api/v1/auth/login", values);
+            const response = await axios.post("http://localhost:3001/api/v1/auth/login", values, { withCredentials: true });
 
 
             if (response.status === 200) {
                 toast.success('SignIn successful!');
-                localStorage.setItem("user", JSON.stringify(response?.data?.data));
                 router.push("/");
             }
         } catch (error) {
