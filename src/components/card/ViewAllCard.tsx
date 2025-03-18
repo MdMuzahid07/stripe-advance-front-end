@@ -42,23 +42,35 @@ export function ViewAllCard() {
                 {!isAddCard ? (
                     // Render saved cards list
                     allCards?.map((card) => (
-                        <div key={card.id} className="rounded-lg border border-slate-200 bg-white">
-                            <div className="p-0">
-                                <div className="flex items-center p-4 md:p-6">
-                                    <div className="flex items-center space-x-4 flex-grow">
-                                        {/* Generic card icon */}
-                                        <div className="bg-muted rounded-md p-2">
-                                            <CreditCard className="h-6 w-6" />
+                        <div key={card._id} className="rounded-lg border border-slate-200 bg-white shadow-sm hover:shadow-md transition-shadow duration-200">
+                            <div className="p-4 md:p-6">
+                                <div className="flex items-center space-x-4">
+                                    {/* Card Icon */}
+                                    <div className="bg-blue-50 rounded-lg p-3">
+                                        <CreditCard className="h-6 w-6 text-blue-600" />
+                                    </div>
+
+                                    {/* Card Details */}
+                                    <div className="flex-grow">
+                                        {/* Card Brand and Payment Method ID */}
+                                        <div className="flex justify-between items-center">
+                                            <p className="text-lg font-semibold text-slate-800">
+                                                {card?.brand}
+                                            </p>
+                                            <p className="text-sm text-slate-500">
+                                                {card?.paymentMethodId}
+                                            </p>
                                         </div>
-                                        <div>
-                                            <div className="flex items-center">
-                                                <span className="font-medium">
-                                                    {card.brand.charAt(0).toUpperCase() + card.brand.slice(1)} •••• {card.last4}
-                                                </span>
-                                            </div>
-                                            <div className="text-sm text-muted-foreground">
-                                                Expires {card.expMonth}/{card.expYear}
-                                            </div>
+
+                                        <div className="mt-2">
+                                            <p className="text-sm text-slate-600">
+                                                **** **** **** {card.last4}
+                                            </p>
+                                        </div>
+                                        <div className="mt-2">
+                                            <p className="text-sm text-slate-600">
+                                                ID: {card?._id}
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
